@@ -23,8 +23,8 @@ development:
   youtube_dev_key: "AIzaSyAsenX0SHJuk5JMeP6L8yKz1R9eigG2V0c"
 
 production:
-  facebook_app_id: "362740853905907"
-  facebook_app_secret: "e95633669c57fd374b61e669d3dd7205"
+  facebook_app_id: "805289592882051"
+  facebook_app_secret: "7fcc7ba29aada4744c834c07348ab8eb"
   AWS_access_key_id: "AKIAJH7HCO5AEF5VRNBQ"
   AWS_secret_access_key: "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"
   fitbit_app_key: "60dbf4c7b3d64afca92a5949e7446f7c"
