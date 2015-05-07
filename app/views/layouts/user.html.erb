@@ -78,7 +78,7 @@
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="/" style="color: #FFFFFF;">Home</a></li>
 	        <li><a href="/videos" style="color: #FFFFFF;">Videos</a></li>
-	        <li><a href="/" style="color: #FFFFFF;">About</a></li>
+	        <!--<li><a href="/" style="color: #FFFFFF;">About</a></li>-->
 	      </ul>
 	    </div>
 	  </div>
@@ -102,11 +102,15 @@
 	<%= yield %>
 	<br>
 	<div class="container-fluid" style="background-color: #A50321;">
-		<% if !admin_signed_in? && !user_signed_in? %>
-	      <h6 class="pull-right"><a href="/admins/sign_in">Admin</a></h6>
-	    <% end %>	
-		<h6 class="text-center" style="padding: 20px; color: #FFFFFF;">© 2015 Virt-U. Developed by <a href="http://ciregbulem.github.io" style="color: #FFFFFF;">Chudi Iregbulem</a>
-		</h6>
+	  <div class="col-lg-3">
+	    <% if !admin_signed_in? && !user_signed_in? %>
+	      <h6 class="pull-left" style="padding: 30px; display: inline;"><a href="/users/sign_in" style="color: #FFFFFF;">Users</a></h6>
+	      <h6 class="pull-left" style="padding: 30px;"><a href="/admins/sign_in" style="color: #FFFFFF;">Admins</a></h6>
+	    <% end %>
+	  </div>	
+	  <div class="col-lg-6">
+	    <h6 class="text-center" style="padding: 30px; color: #FFFFFF;">© 2015 Virt-U. Developed by <a href="http://ciregbulem.github.io" style="color: #FFFFFF;">Chudi Iregbulem</a></h6>
+	  </div>
 	</div>
 </body>
 </html>
