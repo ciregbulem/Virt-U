@@ -40,7 +40,7 @@
 		            <li class="divider"></li>
 		            <li><a href="/videos">View Videos</a></li>
 		            <li class="divider"></li>
-		            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+		            <li><%= button_to "Sign Out", destroy_user_session_path, method: :delete %></li>
 		          </ul>
 		        </li>
 		      </ul>
@@ -64,7 +64,7 @@
 		            <li><a href="/notifications/new">Add Notifications</a></li>
 		            <li><a href="/notifications">View Notifications</a></li>
 		            <li class="divider"></li>
-		            <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+		            <li><%= button_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
 		          </ul>
 		        </li>
 		      </ul>
