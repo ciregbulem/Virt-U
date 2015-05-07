@@ -1,7 +1,29 @@
 Rails.application.routes.draw do
+  
+  get 'notifications/new'
+
+  get 'notifications/edit'
+
+  devise_for :users, controllers: {
+      omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations', sessions: 'users/sessions'
+    }
+
+  devise_for :admins, controllers: { 
+      sessions: 'admins/sessions'
+    }
+
+  get 'tags/:tag', to: 'videos#index', as: :tag
+  get 'categories/:category', to: 'videos#index', as: :category
+  resources :admins
+  resources :users
+  resources :videos
+  resources :notifications
+
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   # Root via High Voltage
   get 'pages/landing' => 'high_voltage/pages#show', id: 'home'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>Edit Profile</title>
+</head>
+<body>
+  <br>
+  <div class="container">
+    <div class="col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+        <%= image_tag @user.fb_image, class: "img img-responsive img-thumbnail" %>
+        <br>
+        <br>
+        <%= bootstrap_form_for(@user) do |f| %>
+          <% f.file_field :avatar, value: "Upload Image", label: "Change Profile Picture" %>
+        <% end %>
+        </div>
+      </div>
+      <%= link_to "Return To Dashboard", :back, class: "btn btn-default btn-block" %>
+    </div>
+    <div class="col-lg-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Edit Profile</h2>
+ 
+          <%= bootstrap_form_for (@user) do |f| %>
+              <%= f.text_field :fname, class: "input-md", label: "First Name", placeholder: "First Name" %>
+              <%= f.text_field :lname, class: "input-md", label: "Last Name", placeholder: "Last Name" %>
+              <%= f.submit "Update", class: "btn btn-success" %>
+          <% end %>
+
+          <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
+
+              <%= f.email_field :email, class: "input-md" %>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+              <%= f.password_field :password, autocomplete: "off", class: "input-md", help: "(leave blank if you don't want to change it)" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "input-md" %>
+              <%= f.password_field :current_password, autocomplete: "off", class: "input-md", help: "(we need your current password to confirm your changes)" %>
+              <%= f.submit "Update", class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="panel panel-default" id="settings">
+        <div class="panel-body">
+          <h2>Settings</h2>
+          <h4>Cancel Account</h4>
+
+          <p>Don't feel like learning anymore? We're sad to see you go! <%= button_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

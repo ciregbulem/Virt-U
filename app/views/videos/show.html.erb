@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= @video.title %></title>
+
+    <!-- Bootstrap -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+    <br>
+      <div class="col-lg-12 well well-lg" style="background-color: #FFFFFF;">
+        <div class="row">
+            <div class="text-center text-capitalize">
+              <h1>
+                <%= @video.title %> 
+              </h1>
+                <% if admin_signed_in? %>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm" href="<%= edit_video_path %>">Edit</a> <%= link_to 'Delete', video_path(@video), :class => "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <br>
+                <!--<%= raw @video2.embed_html5({class: 'video-player', id: 'my-video', width: '100%', height: '75%', frameborder: '0'}) %>-->
+                <%= @video.url_html %>
+                <!--<p><div class="video youtube"><iframe width="100%" height="50%" src="//www.youtube.com/embed/<%= @url %>" frameborder="0" allowfullscreen></iframe></div></p>-->
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1">
+            <br>
+          	<p class="lead">
+          	  <%= @video.description %>
+          	</p>
+            <p>
+              Categories: <%= raw @video.category_list.map { |t| link_to t, category_path(t) }.join(', ') %>
+            </p>
+            <p>
+              Tags: <%= raw @video.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <%- disqus_thread %>
+    </div>
+  </body>
+</html>

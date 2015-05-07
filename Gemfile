@@ -1,12 +1,41 @@
 source 'https://rubygems.org'
 
+# Use PostgreSQL as the database for Active Record
+gem 'pg'
+
+# YouTube Client Gem
+gem 'youtube_it'
+
+# Alternative Gem for YouTube
+gem 'auto_html'
+
+# Disqus for social commenting
+gem 'disqus_rails'
+
+# OmniAuth for social media user authentication
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-facebook'
+
+# Gem for pagination on Active Records
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+
+# Paperclip for image uploading
+gem "paperclip", "~> 4.2"
+
+# Figaro for creating environment variables
+gem 'figaro'
+
 # Devise for user authentication and account creation
 gem 'devise'
+
+# For searchable video tagging
+gem 'acts-as-taggable-on', '~> 3.4'
 
 # High Voltage for static pages
 gem 'high_voltage', '~> 2.2.1'
 
-# Bootstrap Forms for wrapping forms with styling
+# Bootstrap Forms for wrapping rails forms with styling
 gem 'bootstrap_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

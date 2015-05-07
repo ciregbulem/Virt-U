@@ -1,62 +1,98 @@
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/flatly/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/landing.css">
-		<link rel="stylesheet" type="text/css" href="/app/assets/stylesheets/hover-min.css" media="all">
-	</head>
-	<body>
-		<!-- Optimized for large screens. Still need to make work for smaller screens especially the logo and navbar links. -->
-		<div class="container-fluid header">
-			<div class="row">
-				<div class="col-lg-2">
-					<a href="/"><img src="https://s3-us-west-1.amazonaws.com/virt-u/Virt_U_Text_Logo.png" class="img img-responsive" width="70%" height="70%"></a>
-				</div>
-				<div class="col-lg-offset-6 col-lg-4 navbar-links">
-					<a href="#about" class="hover btn"><h4 class="text-uppercase">About</h4></a>
-					<a href="#signup" class="hover btn"><h4 class="text-uppercase">Sign Up</h4></a>
-					<a href="#login" class="hover btn"><h4 class="text-uppercase">Login</h4></a>
-				</div>
+<head>
+	<title>Virt-U | Welcome</title>
+</head>
+<body>
+	<div class="container-fluid" style="background-image: url('http://i.imgur.com/v9pM03B.png?1');margin-top: 0px;" width="100%">
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1" style="padding-top: 10%;padding-bottom: 10%;">
+				<h1 class="text-capitalize text-center" style="color: #FFFFFF;font-size: 50pt;padding-bottom: 0px;">VIRT-U</h1>
+				<h2 class="text-capitalize text-center" style="color: #FFFFFF;font-size: 45pt;font-weight: 200;padding-top: 0px;">We Have Problems</h2>
+				<center style="padding-top: 10px;">
+
+					<% if user_signed_in? %>
+						<%= link_to "View Dashboard", user_path(current_user), class: "btn btn-default" %>
+					<% else %>
+							<a class="btn btn-default btn-md smooth-scroll" href="#info">Learn More</a>
+							<a class="btn btn-success btn-md smooth-scroll" href="/users/sign_up">Get Started</a>
+						<div class="hidden-md hidden-lg">
+							<br>
+							<a href="/users/sign_in" class="btn btn-default">
+								Log In
+							</a>
+						</div>
+					<% end %>
+				</center>
 			</div>
-			<br>
-			<br>
-			<br>
-			<div class="row text-main">
-				<div class="col-lg-offset-2 col-lg-8">
-					<strong><h1 class="text-capitalize text-center attention-text">Learn What You Want</h1><br></strong>
-					<center><a class="btn btn-trans btn-lg" href="#">Get Started</a></center>
-				</div>
+			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+				<br>
+				<% if user_signed_in? %>
+					<%= link_to user_path(current_user), style: "color: #FFFFFF;", class: "hidden-xs hidden-sm" do %>
+						<% if current_user.fb_image %>
+							<% image_tag current_user.fb_image, size: "32" %> <% current_user.fname %>
+						<% elsif current_user.avatar %>
+							<% image_tag current_user.avatar.url(:medium), size: "32" %> <% current_user.fname %>
+						<% end %>
+					<% end %>
+				<% else %>
+					<a href="/users/sign_in">
+						<h5 class="hidden-xs hidden-sm" style="color: #FFFFFF">Log In</h5>
+					</a>
+				<% end %>
 			</div>
 		</div>
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	    <script type="text/javascript">
-	    // Places bar under links when hovered and removes when not hovered 
-	    $(".hover").hover(
-	    	function (){
-	    		$(this).addClass('hvr-underline-reveal');
-	    	},
-	    	function (){
-	    		$(this).removeClass('hvr-underline-reveal');
-	    	}
-    	);
-	    // Code for placing underline under active button
-    	$(".hover").click(
-    		function(){
-    			$(this).addClass('hvr-underline-reveal');
-    		}
-		);
-    	// Adds white background to 'Get Started' button on hove
-	    $(".btn-trans").hover(
-	    	function (){
-	    		$(this).addClass('main-btn-hover');
-	    	},
-	    	function (){
-	    		$(this).removeClass('main-btn-hover');
-	    	}
-    	);
-	    </script>
-	</body>
+	</div>
+	
+	<div class="container">
+		<div class="row" style="padding-top: 75px; padding-bottom: 50px;" id="info">
+			<div class="col-lg-4">
+				<center><i class="fa fa-youtube-play" style="font-size: 800%"></i></center>
+				<h4 class="text-center">PLAY</h4>
+				<p class="text-center">
+					Choose from of our large selection of quirky videos created and curated by our passionate content team!
+				</p>
+			</div>
+			<div class="col-lg-4">
+				<center><i class="fa fa-comments" style="font-size: 800%"></i></center>
+				<h4 class="text-center">RESPOND</h4>
+				<p class="text-center">
+					Express your reactions in the comments section below each video. Be sure to think long and hard to better interpret the video!
+				</p>
+			</div>
+			<div class="col-lg-4">
+				<center><i class="fa fa-lightbulb-o" style="font-size: 800%"></i></center>
+				<h4 class="text-center">LEARN</h4>
+				<p class="text-center">
+					Brush up on your computer science principles in ways you would've never imagined. Learn without the stress of studying!
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" style="background-color: #A50321;">
+		<h1 style="padding: 50px; font-size: 200%; color: #FFFFFF" class="text-center">Challenge yourself intellectually for the present and future. 
+			<% if user_signed_in? %>
+				<%= link_to user_path(current_user), style: "color: #FFFFFF;" do %>
+					View Dashboard <i class="fa fa-arrow-right" style="color: #FFFFFF;"></i>
+				<% end %>
+			<% else %>
+				<a href="/users/sign_up" class="text-warning" style="color: #FFFFFF;">Sign Up <i class="fa fa-arrow-right" style="color: #FFFFFF;"></i></a>
+			<% end %>
+		</h1>
+	</div>
+
+	<div class="container-fluid" style="background-color: #FFFFFF;">
+		<div class="row" style="padding-top: 30px; padding-bottom: 30px;">
+			<div class="col-lg-4 col-lg-offset-1">
+				<img src="http://i.imgur.com/TU73tqX.png" class="img img-responsive" width="100%" style="padding-top: 20%;">
+			</div>
+			<div class="col-lg-6">
+				<h2 class="text-center" style="padding: 10px;">Find Us On YouTube!</h2>
+				<p class="text-center lead"style="font-size: 180%;">
+					Be sure to subscribe to our ever-growing YouTube channel! The quickest way to get updates and stay social is through YouTube. Visit us <a href="http://www.youtube.com" class="text-danger">here</a>!
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

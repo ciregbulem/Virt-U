@@ -1,0 +1,26 @@
+<div class="container">
+<br>
+	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="container">
+					<% @users.each do |user| %>
+								<div class="row">
+									<h1 class="text-muted"><a class="text-muted"href="<%= user_path(user) %>"><%= user.fname %></a></h1>
+										<div class="btn-group">
+											<a type="button" href="<%= user_path(user) %>" class="btn btn-default"><i class="fa fa-eye"></i> View</a> 
+											<% if user_signed_in? %>
+												<a type="button" href="<%= edit_user_registration_path(user) %>" class="btn btn-default"><i class="fa fa-edit"></i> Edit</a> 
+												<%= link_to user_path(user), method: :delete, data: { confirm: 'Are you sure?' } do %>
+													<a type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+												<% end %>
+											<% end %>
+										</div>
+								</div>
+					<% end %>
+				</div>
+				<center><%= will_paginate @users, renderer: BootstrapPagination::Rails %></center>
+			</div>
+		</div>
+	</div>
+</div>

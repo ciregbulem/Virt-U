@@ -1,0 +1,35 @@
+<%= bootstrap_form_for @notification do |f| %>
+  
+  <% if @notification.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@notification.errors.count, "error") %> prohibited
+    this notification from being created:</h2>
+  
+    <ul>
+    <% @notification.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="panel">
+    <div class="panel-body">
+      <p>
+        <%= f.text_field :headline %>
+      </p>
+
+      <p>
+        <%= f.text_area :content, :size => "50x6"%>
+      </p>
+
+      <p>
+        <%= f.check_box :live, label: "Publish?", value: true %>
+      </p>
+
+    </div>
+  </div>
+
+  <p>
+    <%= f.submit "Create", class: "btn btn-default btn-block" %>
+  </p>
+<% end %>  

@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title><%= @user.fname %> <%= @user.lname %></title>
+</head>
+<body>
+	<img src="http://i.imgur.com/MieD8vs.jpg" width="100%" class="img img-responsive">
+	<div class="container-fluid">
+		<br>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="panel panel-danger" style="border-color: #A50321;">
+				<div class="panel-heading text-center panel-title" style="background-color: #A50321;"><i class="fa fa-exclamation-circle"></i> 
+					NEWSFEED
+				</div>
+					<div class="panel-body" style="border-color: #A50321;">
+						<% if @notification %>
+							<h5 class="text-capitalize"><%= @notification.headline %></h5>
+							<p><%= @notification.content %></p>
+						<% end %>
+					</div>
+				</div>
+				<br>
+				<div class="panel panel-danger" style="border-color: #A50321;">
+				<div class="panel-heading text-center panel-title" style="background-color: #A50321;"><i class="fa fa-tag"></i> CATEGORIES</div>
+					<div class="panel-body" style="border-color: #A50321;">
+						<% @categories.each do |category| %>
+							<a class="btn btn-default btn-block" href="<%= category_path(category.name) %>"><%= category.name %></a>
+						<% end %>					
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<%= raw @featured_video[0].url_html.gsub(/height="75%"*/, 'height="60%"') %>
+			</div>
+			<div class="col-lg-3">
+				<div class="panel panel-danger" style="border-color: #A50321;">
+				<div class="panel-heading text-center panel-title" style="background-color: #A50321;"><i class="fa fa-youtube-play"></i> RECENT</div>
+					<div class="panel-body">
+						<% @recent_videos.each do |video| %>
+							<% if video.thumbnail %>
+								<div class="well well-md">
+									<%= link_to video_path(video) do %>
+										<h5 class="text-center"><%= video.title %></h5>
+									<% end %>
+									<%= raw video.url_html.gsub(/height="75%"*/, 'height="25%"') %>
+								</div>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

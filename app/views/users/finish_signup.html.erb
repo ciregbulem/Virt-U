@@ -1,0 +1,23 @@
+<div class="container">
+<br>
+  <div class="panel">
+    <div class="panel-body">
+      <h1>Edit Account Info</h1>
+      <%= bootstrap_form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
+        <% if @show_errors && current_user.errors.any? %>
+            <% current_user.errors.full_messages.each do |msg| %>
+              <%= msg %><br>
+            <% end %>
+        <% end %>
+
+            <%= f.text_field :fname, :autofocus => true, placeholder: "First Name", class: " input-lg", label: "First Name" %>
+            <%= f.text_field :lname, placeholder: "Last Name", class: "input-lg", label: "Last Name" %> 
+            <%= f.email_field :email, class: 'input-lg', placeholder: 'Example: email@me.com' %>
+            <p class="help-block">Please confirm your email address. No spam.</p>
+            <%= f.password_field :password, class: "input-lg", placeholder: "Create a Password" %>
+
+          <%= f.submit 'Continue', :class => 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>

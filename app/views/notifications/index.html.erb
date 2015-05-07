@@ -1,0 +1,27 @@
+<div class="container">
+<br>
+	<div class="well well-lg" style="background-color: #FFFFFF;">
+		<h1 class="text-center"><i class="fa fa-bolt fa-2x"></i> Manage Notifications</h1><br>
+	</div>
+		<a class="btn btn-default" href="/notifications/new"><i class="fa fa-plus"></i> Create Notification</a>
+		<div class="panel default">
+			<div class="panel-body">
+				<div class="container">
+					<% @notifications.each do |notification| %>
+								<div class="row">
+									<h1><a href="<%= edit_notification_path(notification) %>"><%= notification.headline %></a></h1>
+										<div class="btn-group">
+											<% if admin_signed_in? %>
+												<a type="button" href="<%= edit_notification_path(notification) %>" class="btn btn-default"><i class="fa fa-edit"></i> Edit</a> 
+												<%= link_to notification_path(notification), method: :delete, data: { confirm: 'Are you sure?' } do %>
+													<button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+												<% end %>
+											<% end %>
+										</div>
+								</div>
+					<% end %>
+				</div>
+				<center><%= will_paginate @notifications, renderer: BootstrapPagination::Rails %></center>
+			</div>
+		</div>
+</div>

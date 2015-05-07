@@ -1,0 +1,91 @@
+<html>
+	<head>
+		  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+		  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		  <%= javascript_include_tag :defaults %>
+		  <%= csrf_meta_tags %>
+		  <link href="/assets/stylesheets/css/yeti2-bootstrap.css" rel="stylesheet">
+		  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+		<title>Virt-U</title>
+	</head>
+	<body>
+		<div class="container">
+		<br>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="container well well-lg" style="background-color: #FFFFFF;padding: 30px;">
+						<div class="col-lg-4">
+							<%= form_tag(videos_path, :method => 'get', id: 'search-form', style: "padding-top: 10px;")  do %>
+								<div class="input-group">
+							    	<%= text_field_tag :search, params[:search], placeholder: "Search Videos...", class: "form-control input-lg", style: "display: inline;" %>
+							    	<span class="input-group-btn">
+							    		<%= submit_tag "Search", class: "form-button btn btn-danger btn-lg" %>
+						    		</span>
+						    	</div>
+							<% end %>
+						</div>
+						<div class="col-lg-4">
+							<div id="category_cloud" class="text-center">
+								<h4>Popular Categories:</h4>
+								<% tag_cloud Video.category_counts, %w[s m l] do |category, css_class| %>
+									<%= link_to category.name, category_path(category.name), class: css_class, style: "color: #383838;" %>
+								<% end %>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div id="tag_cloud" class="text-center">
+								<h4>Popular Tags:</h4>
+								<% tag_cloud Video.tag_counts, %w[s m l] do |tag, css_class| %>
+									<%= link_to tag.name, tag_path(tag.name), class: css_class, style: "color: #383838;" %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+					<% if admin_signed_in? %>
+						<%= link_to new_video_path, id: "new_video" do %>
+							<button class="btn btn-default"><i class="fa fa-plus"> </i> Add New Video</button>
+						<% end %>
+						<br>
+					<% end %>
+				</div>
+			</div>
+			<div class="row">
+				<% @video_array.each do |video| %>
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div style="padding-bottom: 2px;">
+									<%= raw video[0].url_html.gsub(/height="75%"*/, 'height="50%"') %>
+								</div>
+								<br>
+								<%= link_to video_path(video[0]) do %>
+									<h5 style="display: inline;">
+										<%= video[0].title %>
+									</h5>
+								<% end %>
+								<p>
+									<%= truncate(video[0].description, length: 30, omission: '...(continued)') %>
+								</p>
+								<p>
+									Categories: <%= raw video[0].category_list.map { |t| link_to t, category_path(t) }.join(', ') %>
+								</p>
+								<p style="display: inline;">
+									Tags: <%= raw video[0].tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+								</p>
+								<% if admin_signed_in? %>
+								  <div class="btn-group pull-right">
+				                    <a type="button" class="btn btn-default btn-sm" href="<%= edit_video_path(video[0]) %>">Edit</a> <%= link_to 'Delete', video_path(video[0]), :class => "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+				                  </div>
+				                  <br>
+			                  	<% end %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<% if !params[:tag] && !params[:category] %>
+				<%= will_paginate @videos, renderer: BootstrapPagination::Rails %>
+			<% end %>	
+		</div>
+	</body>
+</html>
