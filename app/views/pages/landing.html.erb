@@ -10,8 +10,11 @@
 				<h2 class="text-capitalize text-center" style="color: #FFFFFF;font-size: 45pt;font-weight: 200;padding-top: 0px;">We Have Problems</h2>
 				<center style="padding-top: 10px;">
 
-					<% if user_signed_in? %>
+					<% if user_signed_in?  %>
 						<%= link_to "View Dashboard", user_path(current_user), class: "btn btn-default" %>
+
+					<% elsif admin_signed_in? %>
+						<a class="btn btn-default" href="/admins/edit">View Dashboard</a>
 					<% else %>
 							<a class="btn btn-default btn-md smooth-scroll" href="#info">Learn More</a>
 							<a class="btn btn-success btn-md smooth-scroll" href="/users/sign_up">Get Started</a>
@@ -29,11 +32,14 @@
 				<% if user_signed_in? %>
 					<%= link_to user_path(current_user), style: "color: #FFFFFF;", class: "hidden-xs hidden-sm" do %>
 						<% if current_user.fb_image %>
-							<% image_tag current_user.fb_image, size: "32" %> <% current_user.fname %>
+							<%= image_tag current_user.fb_image, size: "32", class: "img img-thumnail img-responsive" %> <% current_user.fname %>
 						<% elsif current_user.avatar %>
-							<% image_tag current_user.avatar.url(:medium), size: "32" %> <% current_user.fname %>
+							<%= image_tag current_user.avatar.url(:medium), size: "32", class: "img img-thumnail img-responsive" %> <% current_user.fname %>
 						<% end %>
 					<% end %>
+
+				<% elsif admin_signed_in? %>
+					<a class="btn btn-default" href="/admins/edit">View Dashboard</a>
 				<% else %>
 					<a href="/users/sign_in">
 						<h5 class="hidden-xs hidden-sm" style="color: #FFFFFF">Log In</h5>
@@ -89,7 +95,7 @@
 			<div class="col-lg-6">
 				<h2 class="text-center" style="padding: 10px;">Find Us On YouTube!</h2>
 				<p class="text-center lead"style="font-size: 180%;">
-					Be sure to subscribe to our ever-growing YouTube channel! The quickest way to get updates and stay social is through YouTube. Visit us <a href="http://www.youtube.com" class="text-danger">here</a>!
+					Be sure to subscribe to our ever-growing YouTube channel! The quickest way to get updates and stay social is through YouTube. Visit us <a href="http://www.youtube.com/mmspezial" class="text-danger">here</a>!
 				</p>
 			</div>
 		</div>

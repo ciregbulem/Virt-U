@@ -102,8 +102,11 @@
 	<%= yield %>
 	<br>
 	<div class="container-fluid" style="background-color: #A50321;">
-			<h6 class="text-center" style="padding: 20px; color: #FFFFFF;">© 2015 Virt-U. Developed by <a href="http://ciregbulem.github.io" style="color: #FFFFFF;">Chudi Iregbulem</a>
-			</h6>
+		<% if !admin_signed_in? && !user_signed_in? %>
+	      <h6 class="pull-right"><a href="/admins/sign_in">Admin</a></h6>
+	    <% end %>	
+		<h6 class="text-center" style="padding: 20px; color: #FFFFFF;">© 2015 Virt-U. Developed by <a href="http://ciregbulem.github.io" style="color: #FFFFFF;">Chudi Iregbulem</a>
+		</h6>
 	</div>
 </body>
 </html>
