@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Setting Ruby version
+ruby '2.0.0'
+
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 

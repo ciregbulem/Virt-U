@@ -33,3 +33,4 @@ production:
   disquis_app_secret: "97yk4XBEKCZX1Q91UPwT4e8fglKFgrTzMDkKweOLLEhhV8MCHpUlirLVtfLtwJhw"
   disquis_access_token: "bbedffbe2c52482ba228ad391c465525"
   youtube_dev_key: "AIzaSyAsenX0SHJuk5JMeP6L8yKz1R9eigG2V0c"
+  VIRT_U_DATABASE_PASSWORD: "jason4210"
