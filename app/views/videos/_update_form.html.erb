@@ -17,11 +17,15 @@
   </p>
  
   <p>
-    <%= f.text_area :description, :size => "50x6"%>
+    <%= f.text_area :description, :size => "50x6" %>
   </p>
 
   <p>
     <%= f.text_field :url %>
+  </p>
+
+  <p>
+    <%= f.text_area :code, label: "Code", help: "(paste code examples)", placeholder: "Enter Code Examples", :size => "50x6" %>
   </p>
 
   <p>

@@ -37,7 +37,7 @@
 			</div>
 			<div class="col-lg-6">
 				<% if @featured_video %>
-					<%= raw @featured_video[0].url_html.gsub(/height="75%"*/, 'height="60%"') %>
+					<%= raw @featured_video[0].url_html.gsub(/height="75%"*/, 'height="500"') %>
 				<% end %>
 			</div>
 			<div class="col-lg-3">
@@ -55,6 +55,7 @@
 									</div>
 								<% end %>
 							<% end %>
+							<%= will_paginate @recent_videos, renderer: BootstrapPagination::Rails %>
 						<% end %>
 					</div>
 				</div>

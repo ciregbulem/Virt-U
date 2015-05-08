@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  validates :fname, presence: true
-  validates :lname, presence: true
   validates :email, presence: true
   store_accessor :info, :location, :bio, :about, :gender, :birthday, :name, :link
 

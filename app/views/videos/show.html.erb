@@ -45,6 +45,9 @@
           	<p class="lead">
           	  <%= @video.description %>
           	</p>
+            <kbd>
+              <%= @video.code %>
+            </kbd>
             <p>
               Categories: <%= raw @video.category_list.map { |t| link_to t, category_path(t) }.join(', ') %>
             </p>
